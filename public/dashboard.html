@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Skin Derma Dashboard</title>
+  <link rel="stylesheet" href="style6.css">
+</head>
+<body>
+
+  <!-- Profile Icon -->
+  <img src="images/avatar.png" id="profileBtn" class="profile-icon" alt="Profile">
+
+  <!-- Side Navigation -->
+  <div id="sideNav">
+    <ul>
+      <li><a href="#">Scheduled Appointments</a></li>
+      <li><a href="#">Search History</a></li>
+      <li><a href="#">Buy a Product</a></li>
+      <li><a href="#">Feedback</a></li>
+      <li><a href="#">Settings</a></li>
+      <li><a href="#">Logout</a></li>
+    </ul>
+  </div>
+
+  <!-- Service Section -->
+  <section class="service-section">
+    <div class="service-grid">
+
+      <div class="service-box">
+        <img src="images/pic2.jpg" alt="Self Diagnoser">
+        <p>Self Diagnoser</p>
+      </div>
+
+      <div class="service-box">
+        <img src="images/pic1.jpg" alt="Book Appointment">
+        <p>Book Appointment</p>
+      </div>
+
+      <div class="service-box">
+        <img src="images/ai-chat.png" alt="Chat with AI">
+        <p>Chat with AI</p>
+      </div>
+
+      <div class="service-box">
+        <img src="images/skincare.jpg" alt="Skin Care">
+        <p>Skin Care</p>
+      </div>
+
+      <div class="service-box">
+        <img src="images/group-msg.webp" alt="Group Messaging">
+        <p>Group Messaging</p>
+      </div>
+
+    </div>
+  </section>
+  <script>
+    
+    const profileBtn = document.getElementById("profileBtn");
+const sideNav = document.getElementById("sideNav");
+
+let isNavOpen = false;
+
+// Toggle sidebar on profile click
+profileBtn.addEventListener("click", function (e) {
+  e.stopPropagation(); // prevent closing immediately
+  if (!isNavOpen) {
+    sideNav.style.left = "0";
+    isNavOpen = true;
+  } else {
+    sideNav.style.left = "-250px";
+    isNavOpen = false;
+  }
+});
+
+// Close sidebar when clicking outside
+document.addEventListener("click", function (e) {
+  if (
+    isNavOpen &&
+    !sideNav.contains(e.target) &&
+    e.target !== profileBtn
+  ) {
+    sideNav.style.left = "-250px";
+    isNavOpen = false;
+  }
+});
+
+ 
+
+</script>
+
+</body>
+</html>
