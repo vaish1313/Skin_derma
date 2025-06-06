@@ -1,4 +1,5 @@
-SkinDerma-Keep your skin healthy 
+SkinDerma-Keep your skin healthy
+
 Skinderma – AI-Powered Skin Health Platform
 Skinderma is a full-stack web application developed to assist users in identifying skin-related issues through self-diagnosis, awareness content, and dermatologist-recommended home remedies. The platform integrates AI-based image analysis and keyword symptom search to provide quick and helpful insights for better skin care.
 
