@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Skinderma Chat</title>
+  <link rel="stylesheet" href="style2.css" />
+</head>
+<body>
+  <div class="chat-container">
+    <div id="chat-box"></div>
+
+    <form id="chat-form" enctype="multipart/form-data">
+  <input type="hidden" id="user_id" value="1" />
+  <textarea id="message" placeholder="Type a message..."></textarea>
+
+  <label for="file-upload" class="custom-upload">➕</label>
+  <input id="file-upload" type="file" name="image" accept="image/*" />
+
+  <button type="submit">Send</button>
+</form>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+
+  <script>
+    const socket = io();
+    const form = document.getElementById('chat-form');
+    const chatBox = document.getElementById('chat-box');
+    const fileUpload = document.getElementById('file-upload');
+
+    function appendMessage(data) {
+      const div = document.createElement('div');
+      div.classList.add('message');
+      div.innerHTML = `
+        <strong>${data.username}</strong>
+
+        <p>${data.message || ''}</p>
+        ${data.image_url ? `<img src="${data.image_url}" class="chat-img" />` : ''}
+        <small>${new Date(data.timestamp).toLocaleString()}</small>
+        <hr/>
+      `;
+      chatBox.appendChild(div);
+      chatBox.scrollTop = chatBox.scrollHeight;
+    }
+
+    socket.on('newMessage', appendMessage);
+
+    fetch('/messages')
+      .then(res => res.json())
+      .then(messages => messages.forEach(appendMessage));
+
+    document.getElementById('chat-form').addEventListener('submit', async (e) => {
+  e.preventDefault();
+
+  const user_id = document.getElementById('user_id').value;
+  const message = document.getElementById('message').value;
+  const fileInput = document.getElementById('file-upload');
+  const file = fileInput.files[0];
+
+  const formData = new FormData();
+  formData.append('user_id', user_id);
+  formData.append('message', message);
+  if (file) {
+    formData.append('image', file);
+  }
+
+  try {
+    const response = await fetch('/upload-image', {
+      method: 'POST',
+      body: formData,
+    });
+
+    const data = await response.json(); // ❗ Must be JSON on success
+    console.log('Upload success:', data);
+
+    // Emit chat message to Socket.IO
+    socket.emit('chatMessage', {
+      user_id,
+      message,
+      image_url: data.image_url || null,
+    });
+
+    document.getElementById('message').value = '';
+    fileInput.value = '';
+  } catch (err) {
+    console.error('Upload failed:', err);
+  }
+});
+
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,5 @@
+node_modules/
+ml_model/dataset/
+ml_model/venv/
+.env
+.DS_Store
