@@ -60,4 +60,4 @@ async function searchSymptoms() {
     resultsDiv.innerHTML = "<p>Error fetching data. Please try again later.</p>";
   }
 }
- 4a40d26f4cfb5c8be7c965dc401165e017be6eed
+ //4a40d26f4cfb5c8be7c965dc401165e017be6eed
