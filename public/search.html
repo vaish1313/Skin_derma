@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -134,3 +135,141 @@
   </script>
 </body>
 </html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Self Diagnoser - Skin Derma</title>
+  <link rel="stylesheet" href="style7.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+  <style>
+  .diagnoser-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'Poppins', sans-serif;
+  }
+
+  .top-bar {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.upload-label {
+  font-size: 24px;
+  background-color: #eee;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.upload-label:hover {
+  background-color: #ccc;
+}
+
+#imageInput {
+  display: none;
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.search-box input {
+  padding: 10px;
+  font-size: 16px;
+  width: 250px;
+}
+
+.search-box button {
+  padding: 10px 15px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+</style>
+
+</head>
+<body>
+
+<section class="diagnoser-container">
+  <h1 class="diagnoser-title">Self Diagnoser</h1>
+  <p class="diagnoser-subtitle">Describe symptoms or upload a skin image</p>
+
+  <!-- 🆕 Top bar with upload and search side-by-side -->
+ <div class="top-bar">
+  <label for="imageInput" class="upload-label">+</label>
+  <input type="file" id="imageInput" name="image" accept="image/*" required />
+
+  <div class="search-box">
+    <input type="text" id="searchInput" placeholder="Enter your symptoms..." />
+    <button onclick="searchSymptoms()">Search</button>
+  </div>
+</div>
+
+
+
+  <div id="results" class="results-box">
+    <!-- Results appear here -->
+  </div>
+</section>
+
+
+  <script>
+    // Text search
+    async function searchSymptoms() {
+  const query = document.getElementById('searchInput').value.trim();
+  const imageFile = document.getElementById('imageInput').files[0];
+
+  // Case 1: Image uploaded
+  if (imageFile) {
+    const formData = new FormData();
+    formData.append('image', imageFile);
+
+    try {
+      const res = await fetch('/api/scan', {
+        method: 'POST',
+        body: formData
+      });
+
+      const data = await res.json();
+      document.getElementById('results').innerHTML = `<p><strong>Prediction:</strong> ${data.result}</p>`;
+    } catch (error) {
+      document.getElementById('results').innerHTML = `<p>Error scanning image.</p>`;
+    }
+  }
+
+  // Case 2: Text input only
+  else if (query.length > 0) {
+    try {
+      const response = await fetch(`/api/search?query=${encodeURIComponent(query)}`);
+      const results = await response.json();
+      displayResults(results);
+    } catch (error) {
+      document.getElementById('results').innerHTML = `<p>Error fetching text results.</p>`;
+    }
+  }
+
+  // Case 3: No input
+  else {
+    alert("Please enter symptoms or upload an image.");
+  }
+}
+
+
+  </script>
+</body>
+</html>
+ 4a40d26f4cfb5c8be7c965dc401165e017be6eed

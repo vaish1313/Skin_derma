@@ -1,3 +1,4 @@
+
 body{
      background: linear-gradient(rgba(0,0,0,0.5),#009688),url(images/derma1.jpg);
     background-size: cover;
@@ -56,3 +57,63 @@ button {
 button:hover {
     background-color: #0056b3;
 }
+
+body{
+     background: linear-gradient(rgba(0,0,0,0.5),#009688),url(images/derma1.jpg);
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+}
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+h1 {
+    text-align: center;
+}
+
+form {
+    max-width: 400px;
+    margin: 20px auto;
+    background: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="number"],
+textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+ 4a40d26f4cfb5c8be7c965dc401165e017be6eed

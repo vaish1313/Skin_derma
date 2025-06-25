@@ -1,3 +1,4 @@
+
 .diagnoser-container {
   padding: 60px 20px;
   text-align: center;
@@ -77,3 +78,84 @@
   font-size: 14px;
   color: #333;
 }
+
+.diagnoser-container {
+  padding: 60px 20px;
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+  background: #e0f2f1;
+  min-height: 100vh;
+}
+
+.diagnoser-title {
+  font-size: 48px;
+  color: #00695c;
+}
+
+.diagnoser-subtitle {
+  margin-top: 10px;
+  font-size: 18px;
+  color: #555;
+}
+
+.search-box {
+  margin-top: 40px;
+}
+
+.search-box input {
+  width: 40%;
+  padding: 12px;
+  font-size: 18px;
+  border: 2px solid #00695c;
+  border-radius: 5px;
+}
+
+.search-box button {
+  padding: 12px 20px;
+  font-size: 18px;
+  background-color: #00695c;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.search-box button:hover {
+  background-color: #004d40;
+}
+
+.results-box {
+  margin-top: 50px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.result-card {
+  background-color: #ffffff;
+  width: 300px;
+  margin: 15px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.15);
+  padding: 20px;
+  text-align: left;
+}
+
+.result-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+
+.result-card h3 {
+  color: #00796b;
+}
+
+.result-card p {
+  font-size: 14px;
+  color: #333;
+}
+ 4a40d26f4cfb5c8be7c965dc401165e017be6eed
